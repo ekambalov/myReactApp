@@ -1,0 +1,19 @@
+.profile {
+    display: flex;
+  }
+  .album{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    transform: translateY(-20px);
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  } 
+.profile__avatar {
+    width: 200px;
+    height: 200px;
+    margin-right: 40px;
+    border-radius: 10px;
+  }

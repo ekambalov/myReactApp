@@ -1,0 +1,26 @@
+.nav {
+    position: sticky;
+    left: 0;
+    top: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(65, 63, 63, 0.4);
+    grid-area: n;
+    background-color: rgb(127, 168, 255);
+    border-radius: 10px;
+    height: 500px;
+  }
+  .list {
+    list-style: none;
+  }
+  .item {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    transition: 0.5s;
+  }
+  .item:hover{
+    color: rgb(70, 70, 70);
+    transition: 0.3s;
+  }
+  .active{
+    color: rgb(255, 200, 50);
+  }

@@ -1,0 +1,21 @@
+*{
+  box-sizing: border-box;
+}
+.app-wrapper{
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+  grid-template-areas: 
+  'h h'
+  'n c';
+}
+
+.content{
+  grid-area: c;
+  box-shadow: 2px 2px 2px 1px rgba(65, 63, 63, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+}

@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+
+  padding: 50px 40px;
+  padding-top: 140px;
+}
+  
+
+
+  .profile {
+    display: flex;
+  }
+
+  .profile__avatar {
+    width: 200px;
+    height: 200px;
+    margin-right: 40px;
+    border-radius: 10px;
+  }

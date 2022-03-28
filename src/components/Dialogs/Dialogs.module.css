@@ -1,0 +1,31 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    padding: 10px;
+}
+.dialogs__items{
+    margin-right: 100px;
+}
+.dialogs__item{
+    margin-bottom: 20px;
+}
+
+.dialogs__list{
+    list-style: none;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.link:hover{
+    background-color: rgb(207, 207, 207);
+    transition: background-color 0.5s;
+
+}
+.active{
+    background-color: rgb(235, 235, 235);
+}
