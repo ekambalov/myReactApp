@@ -1,11 +1,11 @@
 let state = { profilePage:
     {
         postData: [
-            {id1:0, message:"fuck you, russian warship!", likesCounter:1337},
-            {id1:1, message:"Hellow, world", likesCounter:10},
-            {id1:2, message:"It's my first post", likesCounter:0},
-            {id1:3, message:"fuck fuck", likesCounter:0},
-            {id1:4, message:"fuck", likesCounter:0}
+            {id:0, message:"fuck you, russian warship!", likesCounter:1337},
+            {id:1, message:"Hellow, world", likesCounter:10},
+            {id:2, message:"It's my first post", likesCounter:0},
+            {id:3, message:"fuck fuck", likesCounter:0},
+            {id:4, message:"fuck", likesCounter:0}
         ]
     },
     dialogsPage : {
@@ -25,5 +25,15 @@ let state = { profilePage:
         ]
     }
   }
+
+export const addPost = (postMessage) => {
+    let newPost = {
+        id: state.profilePage.postData.length + 1,
+        message: postMessage,
+        likesCounter: 0
+    }
+    state.profilePage.postData.push(newPost);
+}
+
 
 export default state;
