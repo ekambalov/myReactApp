@@ -47,3 +47,8 @@
     background-color: rgb(73, 131, 255);
     transition: background-color 0.2s;
 }
+
+.posts_wrapper{
+    display: flex;
+    flex-direction: column-reverse;
+}

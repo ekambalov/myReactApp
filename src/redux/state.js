@@ -1,3 +1,5 @@
+import { renderEntireTrie } from "../render";
+
 let state = { profilePage:
     {
         postData: [
@@ -33,6 +35,7 @@ export const addPost = (postMessage) => {
         likesCounter: 0
     }
     state.profilePage.postData.push(newPost);
+    renderEntireTrie(state)
 }
 
 

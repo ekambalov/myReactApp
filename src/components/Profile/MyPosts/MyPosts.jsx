@@ -12,6 +12,7 @@ const MyPosts = (props) => {
      const addPost = ()=>{
          let text = newElement.current.value;
          props.addPost(text);
+         newElement.current.value = '';
      }
 
     return(
@@ -21,7 +22,10 @@ const MyPosts = (props) => {
                 <textarea ref={newElement}  placeholder='your news' className={classes.input}/>
                 <button onClick={addPost} className={classes.button}>send</button>
             </div>
+            <div className={classes.posts_wrapper}>
             {posts}
+
+            </div>
         </div>
     );
 }
