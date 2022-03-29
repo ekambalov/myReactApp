@@ -2,6 +2,7 @@ import React from 'react';
 import DialogsItem from './DialogItem/DialogItem';
 import classes from './Dialogs.module.css'
 import Message from './Message/Message';
+import MessageInput from './MessageInput/MessageInput';
 
 
 
@@ -24,6 +25,7 @@ let messages = props.data.messagesData
             </div>
             <div className={classes.message}>
                 {messages}
+                <MessageInput/>
             </div>
         </div>
     )
