@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import {addPost} from './redux/state'
+import {addPost, updateNewPostChange} from './redux/state'
 
 export let renderEntireTrie = (state) => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App data={state} addPost={addPost} />
+      <App data={state} 
+      addPost={addPost} 
+      updateNewPostChange={updateNewPostChange} />
     </React.StrictMode>,
     document.getElementById('root')
   );

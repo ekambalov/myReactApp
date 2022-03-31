@@ -8,7 +8,8 @@ let state = { profilePage:
             {id:2, message:"It's my first post", likesCounter:0},
             {id:3, message:"fuck fuck", likesCounter:0},
             {id:4, message:"fuck", likesCounter:0}
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage : {
         dialogsData : [
@@ -28,13 +29,22 @@ let state = { profilePage:
     }
   }
 
-export const addPost = (postMessage) => {
+
+
+export const addPost = () => {
     let newPost = {
         id: state.profilePage.postData.length + 1,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCounter: 0
     }
     state.profilePage.postData.push(newPost);
+    renderEntireTrie(state)
+    updateNewPostChange('');
+}
+
+export const updateNewPostChange = (newText) => {
+
+    state.profilePage.newPostText = newText;
     renderEntireTrie(state)
 }
 
