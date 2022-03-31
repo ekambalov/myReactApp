@@ -1,5 +1,3 @@
-import { renderEntireTrie } from "../render";
-
 let state = { profilePage:
     {
         postData: [
@@ -29,7 +27,9 @@ let state = { profilePage:
     }
   }
 
-
+let renderEntireTrie = (state)=>{
+    console.log('state change')
+}
 
 export const addPost = () => {
     let newPost = {
@@ -46,6 +46,10 @@ export const updateNewPostChange = (newText) => {
 
     state.profilePage.newPostText = newText;
     renderEntireTrie(state)
+}
+
+export const subscribe = (observer) =>{
+    renderEntireTrie = observer;
 }
 
 
