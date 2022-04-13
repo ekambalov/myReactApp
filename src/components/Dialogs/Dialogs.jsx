@@ -14,7 +14,7 @@ const Dialogs = (props) => {
 let dialogs = props.data.dialogsData
     .map( element => <DialogsItem id={element.id} name={element.name}/>);
 let messages = props.data.messagesData
-    .map( element =><Message message={element.message} id={element.id}/>);
+    .map( element =><Message message={element.message} id={element.id} />);
 
     return(
         <div className={classes.dialogs}>
@@ -25,7 +25,7 @@ let messages = props.data.messagesData
             </div>
             <div className={classes.message}>
                 {messages}
-                <MessageInput/>
+                <MessageInput value={props.data.newMessageText}  dispatch={props.dispatch}/>
             </div>
         </div>
     )
