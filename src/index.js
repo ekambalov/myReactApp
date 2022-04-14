@@ -11,6 +11,7 @@ let renderEntireTrie = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <App data={state} 
+      store={store} 
       dispatch={store.dispatch.bind(store)}  />
     </React.StrictMode>,
     document.getElementById('root')

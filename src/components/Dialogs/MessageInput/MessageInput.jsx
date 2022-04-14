@@ -9,22 +9,21 @@ const MessageInput = (props) => {
 
     let newMessage = React.createRef();
 
-    const sendMessage = () =>{
+    const onSendMessage = () =>{
         let text = newMessage.current.value;
-        props.dispatch(sendMessageActionCreator(text));
+        props.sendMessage(text);
     }
-    const updateMessage = () => {
+    const onUpdateMessage = () => {
         let text = newMessage.current.value;
-        props.dispatch(updateNewMessageActionCreator(text));
+        props.updateMessage(text);
     }
-
     return(
         <div className={classes.input}>
             <textarea ref={newMessage}
              value = {props.value}
-             onChange={updateMessage}
+             onChange={onUpdateMessage}
              placeholder='Write here...'></textarea>
-            <button onClick={sendMessage}>Send</button>
+            <button onClick={onSendMessage}>Send</button>
         </div>
     )
 }

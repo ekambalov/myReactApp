@@ -2,7 +2,7 @@ import React from 'react';
 import DialogsItem from './DialogItem/DialogItem';
 import classes from './Dialogs.module.css'
 import Message from './Message/Message';
-import MessageInput from './MessageInput/MessageInput';
+import MessageInputContainer from './MessageInput/MessageInputContainer';
 
 
 
@@ -25,7 +25,7 @@ let messages = props.data.messagesData
             </div>
             <div className={classes.message}>
                 {messages}
-                <MessageInput value={props.data.newMessageText}  dispatch={props.dispatch}/>
+                <MessageInputContainer value={props.data.newMessageText}  dispatch={props.dispatch}/>
             </div>
         </div>
     )
