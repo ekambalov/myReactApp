@@ -4,28 +4,23 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
 
-let renderEntireTrie = (state) => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <StoreContext.Provider value={store}>
+      
+      <Provider store={store}>
 
       <App/>
-      </StoreContext.Provider>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
 
-}
 
-renderEntireTrie(store.getState());
-store.subscribe(()=>{
-  let state = store.getState();
-  renderEntireTrie(state);
-})
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
