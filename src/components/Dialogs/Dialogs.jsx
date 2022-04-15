@@ -11,21 +11,17 @@ import MessageInputContainer from './MessageInput/MessageInputContainer';
 const Dialogs = (props) => {
 
 
-let dialogs = props.data.dialogsData
-    .map( element => <DialogsItem id={element.id} name={element.name}/>);
-let messages = props.data.messagesData
-    .map( element =><Message message={element.message} id={element.id} />);
 
     return(
         <div className={classes.dialogs}>
             <div className={classes.dialogs__items}>
                 <ul className={classes.dialogs__list}>
-                    {dialogs}
+                    {props.dialogs}
                 </ul>
             </div>
             <div className={classes.message}>
-                {messages}
-                <MessageInputContainer value={props.data.newMessageText}  dispatch={props.dispatch}/>
+                {props.messages}
+                <MessageInputContainer />
             </div>
         </div>
     )

@@ -4,15 +4,17 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import StoreContext from './StoreContext';
 
 
 let renderEntireTrie = (state) => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App data={state} 
-      store={store} 
-      dispatch={store.dispatch.bind(store)}  />
+      <StoreContext.Provider value={store}>
+
+      <App/>
+      </StoreContext.Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
