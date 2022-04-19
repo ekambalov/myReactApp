@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
     <React.StrictMode>
       
       <Provider store={store}>
-
+      
       <App/>
       </Provider>
     </React.StrictMode>,

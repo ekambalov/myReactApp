@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classes from'./Navbar.module.css';
 
 
@@ -13,6 +13,7 @@ const Navbar = ()=>{
           <li><NavLink to='/news' className={(navData) => navData.isActive ? classes.active+' '+classes.item : classes.item}>News</NavLink></li>
           <li><NavLink to='/music' className={(navData) => navData.isActive ? classes.active+' '+classes.item : classes.item}>Music</NavLink></li>
           <li><NavLink to='/settings' className={(navData) => navData.isActive ? classes.active+' '+classes.item : classes.item}>Settings</NavLink></li>
+          <li><NavLink to='/users' className={(navData) => navData.isActive ? classes.active+' '+classes.item : classes.item}>Users</NavLink></li>
         </ul>
 
       </nav>
