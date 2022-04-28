@@ -54,3 +54,12 @@
     text-transform: uppercase;
     margin: 0 auto;
 }
+
+.btnPage{
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.btnPageActive{
+    font-weight: bold;
+    background-color: rgb(69, 126, 249);
+}

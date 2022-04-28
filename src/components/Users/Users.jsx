@@ -2,6 +2,7 @@ import * as axios from 'axios';
 import React from 'react';
 import styles from './Users.module.css'
 import defalutAvatar from '../../assets/img/defalut-avatar.webp'
+import { setCurrentPageAC } from '../../redux/usersReducer';
 
 class Users extends React.Component {
 
@@ -13,26 +14,37 @@ class Users extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCount(response.data.totalCount);
+    
+            }) 
+    }
+
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
                 this.props.setUsers(response.data.items)
     
             }) 
     }
 
-    getUsers = () => {
-        
-       
-            alert('new')
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                this.props.setUsers(response.data.items)
-    
-            })      
-            
-      
-    } 
-
     render() {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount/this.props.pageSize);
+
+        let pages = [];
+
+        for (let i = 1; i<=pagesCount; i++){
+            pages.push(i);
+        }
+
         return ( <div className={styles.container}> 
+
+                {pages.map(p =>  <button id={p} className={this.props.currentPage === p ? styles.btnPage+' '+styles.btnPageActive : styles.btnPage}
+                onClick={(e)=> this.onPageChanged(p)}
+                >{p}</button>)}
+
 
             {
                 this.props.users.map( u => {
@@ -61,7 +73,7 @@ class Users extends React.Component {
                     }
                 )
             }
-            <button className={styles.button} onClick = {this.getUsers} >get users</button>
+            {/* <button className={styles.button} onClick = {this.getUsers} >get users</button> */}
         </div>
         )
     }
