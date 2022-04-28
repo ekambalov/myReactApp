@@ -5,18 +5,19 @@ import defalutAvatar from '../../assets/img/defalut-avatar.webp'
 
 const Users = (props) => {
 
-
-    if(props.users.length===0){
+    const getUsers = () => {
         
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items)
-
-        })
-
-
-        
-        
+        if(props.users.length===0){
+            
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+    
+            })      
+            
+        }
     }
+
+
     return ( <div className={styles.container}> 
 
         {
@@ -46,6 +47,7 @@ const Users = (props) => {
                 }
             )
         }
+        <button className={styles.button} onClick = {getUsers} >get users</button>
     </div>
     )
 }
