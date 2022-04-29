@@ -34,12 +34,27 @@ class Users extends React.Component {
         let pagesCount = Math.ceil(this.props.totalUsersCount/this.props.pageSize);
 
         let pages = [];
-
-        for (let i = 1; i<=pagesCount; i++){
-            pages.push(i);
+        
+        if(this.props.currentPage === 1){
+            pages = [1,2, pagesCount];
+        } else if(this.props.currentPage === 2){
+            pages = [1,2, 3, pagesCount];
+        } else if(this.props.currentPage === pagesCount){
+            pages = [1,pagesCount - 1, pagesCount];
+        } 
+        else if(this.props.currentPage === pagesCount-1){
+            pages = [1,pagesCount - 2,pagesCount - 1, pagesCount];
+        } else {
+            pages = [1,this.props.currentPage-1,this.props.currentPage,this.props.currentPage+1,pagesCount]
         }
 
+        
+        
+
+
+
         return ( <div className={styles.container}> 
+
 
                 {pages.map(p =>  <button id={p} className={this.props.currentPage === p ? styles.btnPage+' '+styles.btnPageActive : styles.btnPage}
                 onClick={(e)=> this.onPageChanged(p)}
