@@ -58,25 +58,25 @@ const usersReducer = (state = initialState, action) => {
 }
 
 
-export const followAC = (userID) => {
+export const follow = (userID) => {
     return {type: FOLLOW, userID}
 }
 
-export const unfollowAC = (userID) =>{
+export const unfollow = (userID) =>{
     return {type: UNFOLLOW, userID}
 }
 
-export const setUsersAC = (users) =>{
+export const setUsers = (users) =>{
     return {type: SET_USERS, users}
 }
-export const setCurrentPageAC = (page) =>{
+export const setCurrentPage = (page) =>{
     return {type: SET_CURRENT_PAGE, currentPage: page}
 }
 
-export const setTotalCountAC = (totalUsersCount) =>{
+export const setTotalCount = (totalUsersCount) =>{
     return {type: SET_TOTAL_COUNT, totalUsersCount}
 }
-export const toggleIsFetchingAC = (isFetching) =>{
+export const toggleIsFetching = (isFetching) =>{
     return {type: TOGGLE_IS_FETCHING, isFetching}
 }
 
