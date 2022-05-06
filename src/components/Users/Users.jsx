@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css'
 import defalutAvatar from '../../assets/img/defalut-avatar.webp'
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) =>{
 
@@ -35,7 +36,10 @@ const Users = (props) =>{
                 
                         <div className={styles.userBtn}>
 
-                        <img src={u.photos.small===null ? defalutAvatar : u.photos.small} alt="avatar" className={styles.usersPhoto} />                   
+                        <NavLink to={'/profile/'+u.id}>                            
+                            <img src={u.photos.small===null ? defalutAvatar : u.photos.small} alt="avatar" className={styles.usersPhoto} />                   
+                        </NavLink>
+                        
                     
                         {u.followed? <button onClick={()=> props.unfollow(u.id)}>follow</button> : <button onClick={()=> props.follow(u.id)}>unfollow</button>}
                         </div>

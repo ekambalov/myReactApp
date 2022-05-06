@@ -1,7 +1,5 @@
 import React from 'react';
-import DialogsItem from './DialogItem/DialogItem';
 import classes from './Dialogs.module.css'
-import Message from './Message/Message';
 import MessageInputContainer from './MessageInput/MessageInputContainer';
 
 
