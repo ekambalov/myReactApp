@@ -8,7 +8,7 @@ import MyPosts from './MyPosts';
 let mapStateToProps = (state) => { 
     return {
         data: state.profilePage.postData,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText,
     }
 }
 
@@ -21,6 +21,8 @@ let mapDispatchToProps = (dispatch) =>{
 
     }
 }
+
+
 
 const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts)
 

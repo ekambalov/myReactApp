@@ -1,6 +1,7 @@
 import React from 'react'
 import Preloader from '../../common/Preloader/Preloader'
 import classes from './ProfileInfo.module.css'
+import defaluteAvatar from '../../../assets/img/defalut-avatar.webp';
 
 const ProfileInfo = (props)=>{
   if(!props.profile) {
@@ -9,7 +10,7 @@ const ProfileInfo = (props)=>{
     return (
           <section className={classes.profile}>
             <img src='https://cdn.mos.cms.futurecdn.net/yL3oYd7H2FHDDXRXwjmbMf.jpg' alt='album pic' className={classes.album} />
-          <img src={props.profile.photos.large} className={classes.profile__avatar}/>
+          <img src={props.profile.photos.large ? props.profile.photos.large : defaluteAvatar} className={classes.profile__avatar} alt='profile'/>
           <div className={classes.profile__description}>
             <h1 className={classes.profile__name}>{props.profile.fullName}</h1>
             <p className={classes.profile__info}>{'About me: '+props.profile.aboutMe}</p>

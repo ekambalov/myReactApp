@@ -5,7 +5,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
     let posts = props.data
-        .map(data => <Post message={data.message} likes={data.likesCounter} />)
+        .map(data => <Post message={data.message} likes={data.likesCounter} avatar = {props.avatar} />)
     let newElement = React.createRef()
 
     const onAddPost = ()=>{
@@ -17,7 +17,7 @@ const MyPosts = (props) => {
         props.updateNewPostChange(text);
     }
 
-
+    
     return(
         <div> 
             <div className={classes.input_wrapper}>
