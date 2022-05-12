@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Users.module.css'
 import defalutAvatar from '../../assets/img/defalut-avatar.webp'
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { UsersAPI } from '../../api/api';
 
 const Users = (props) =>{
@@ -43,20 +42,24 @@ const Users = (props) =>{
                         </NavLink>
                         
                     
-                        {u.followed? <button onClick={()=> {
+                        {u.followed? <button disabled={props.followinInProgress.some(id => id === u.id)} onClick={()=> {
+                            props.toggleIsFollowingProgress(true, u.id);
                            UsersAPI.unfollow(u.id).then(data => {
                             if (data.resultCode === 0) {
+
                                 props.unfollow(u.id);
-                            }                            
+                            }   
+                            props.toggleIsFollowingProgress(false, u.id);                         
                         })                     
                             
                             }}>
-                            unfollow</button> : <button onClick={()=> {
-                                
+                            unfollow</button> : <button disabled={props.followinInProgress.some(id => id === u.id)} onClick={()=> {
+                                    props.toggleIsFollowingProgress(true, u.id);
                                     UsersAPI.follow(u.id).then(data => {
                                         if (data.resultCode === 0) {
                                             props.follow(u.id);
                                         }                            
+                                        props.toggleIsFollowingProgress(false, u.id);
                                     }) 
                             }
                                 

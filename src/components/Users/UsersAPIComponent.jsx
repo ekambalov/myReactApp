@@ -1,7 +1,7 @@
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import { getUsers, UsersAPI } from '../../api/api';
+import {  UsersAPI } from '../../api/api';
 
 class UsersAPIComponent extends React.Component {
 
@@ -38,6 +38,8 @@ class UsersAPIComponent extends React.Component {
                         unfollow = {this.props.unfollow}
                         follow = {this.props.follow}
                         onPageChanged ={this.onPageChanged}
+                        toggleIsFollowingProgress = {this.props.toggleIsFollowingProgress}
+                        followinInProgress = {this.props.followinInProgress}
         />
         </>
     }
