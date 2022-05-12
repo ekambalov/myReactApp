@@ -2,9 +2,11 @@
  .header {
     grid-area: h;
     display: flex;
+    align-items: center;
     background-color: rgb(127, 168, 255);
     box-shadow: 2px 2px 2px 1px rgba(65, 63, 63, 0.4);
     border-radius: 10px;
+    padding: 10px 20px;
    }
    
    .logo{
@@ -18,3 +20,18 @@
      color: rgb(255, 200, 50);
      margin-left: 40px;
    }
+.loginBlock {  
+  margin-left: auto;  
+}
+.loginLink {
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+  transition: 0.3s;
+}
+
+.loginLink:hover{
+  color: rgb(70, 70, 70);
+  transition: 0.3s;
+}
