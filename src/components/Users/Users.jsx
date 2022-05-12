@@ -3,6 +3,7 @@ import styles from './Users.module.css'
 import defalutAvatar from '../../assets/img/defalut-avatar.webp'
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { UsersAPI } from '../../api/api';
 
 const Users = (props) =>{
 
@@ -43,13 +44,8 @@ const Users = (props) =>{
                         
                     
                         {u.followed? <button onClick={()=> {
-                           axios.delete (`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,  {
-                               withCredentials: true,
-                               headers: {
-                                   'API-KEY' : 'f384fc6b-9311-417a-b150-47e6f62d372a'
-                               }
-                            }).then(response => {
-                            if (response.data.resultCode === 0) {
+                           UsersAPI.unfollow(u.id).then(data => {
+                            if (data.resultCode === 0) {
                                 props.unfollow(u.id);
                             }                            
                         })                     
@@ -57,13 +53,8 @@ const Users = (props) =>{
                             }}>
                             unfollow</button> : <button onClick={()=> {
                                 
-                                    axios.post (`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY' : 'f384fc6b-9311-417a-b150-47e6f62d372a'
-                                        }
-                                     }).then(response => {
-                                        if (response.data.resultCode === 0) {
+                                    UsersAPI.follow(u.id).then(data => {
+                                        if (data.resultCode === 0) {
                                             props.follow(u.id);
                                         }                            
                                     }) 
