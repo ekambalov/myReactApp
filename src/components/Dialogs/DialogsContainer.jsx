@@ -13,7 +13,8 @@ let mapStateToProps = (state) => {
     return (
         {
             dialogs: dialogs,
-            messages: messages
+            messages: messages,
+            isAuth: state.auth.isAuth
         }
     )
 }
