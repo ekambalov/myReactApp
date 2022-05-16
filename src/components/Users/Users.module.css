@@ -63,3 +63,6 @@
     font-weight: bold;
     background-color: rgb(69, 126, 249);
 }
+.btnFollow:disabled {
+    background-color: #646464;
+}

@@ -23,6 +23,13 @@ export const UsersAPI = {
     follow(userID){
         return instance.post (`/follow/${userID}`)
                     .then(response => response.data)
+    },
+    getAuth() {
+        return instance.get(`/auth/me`)
+                    .then(responce => responce.data )
+    },
+    getProfile(userId) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => response.data) 
     }
 }
 

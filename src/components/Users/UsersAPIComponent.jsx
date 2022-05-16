@@ -1,31 +1,19 @@
 import React from 'react';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import {  UsersAPI } from '../../api/api';
 
 class UsersAPIComponent extends React.Component {
 
     
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        UsersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalCount(data.totalCount);
-    
-            }) 
-    }
+     this.props.getUsers(this.props.currentPage, this.props.pageSize);
+
+     }
 
     onPageChanged = (pageNumber) => {
-        
-        this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
-        UsersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);    
-            this.props.setUsers(data.items)
-    
-            }) 
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
@@ -35,10 +23,9 @@ class UsersAPIComponent extends React.Component {
                         totalUsersCount  = {this.props.totalUsersCount} 
                         pageSize  = {this.props.pageSize}
                         users = {this.props.users}
-                        unfollow = {this.props.unfollow}
                         follow = {this.props.follow}
+                        unfollow = {this.props.unfollow}
                         onPageChanged ={this.onPageChanged}
-                        toggleIsFollowingProgress = {this.props.toggleIsFollowingProgress}
                         followinInProgress = {this.props.followinInProgress}
         />
         </>
