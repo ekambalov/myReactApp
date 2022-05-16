@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {  useLocation, useNavigate, useParams } from 'react-router-dom';
+import { compose } from 'redux';
 import { UsersAPI } from '../../api/api';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { getMyId, setMyId, setUserProfile } from '../../redux/profileReducer';
@@ -46,7 +47,7 @@ function withRouter(Component) {
 }
 
 
-let authRedurectComponent = withAuthRedirect(ProfileContainer)
+
 
 
 
@@ -57,6 +58,9 @@ let mapStateToProps = (state) => ({
 
 }) 
 
-let WithURLDataContainerCopmponent = withRouter(authRedurectComponent)
 
-export default connect(mapStateToProps,{setUserProfile, setMyId, getMyId})(WithURLDataContainerCopmponent);
+export default compose(
+  connect(mapStateToProps,{setUserProfile, setMyId, getMyId}),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer)
