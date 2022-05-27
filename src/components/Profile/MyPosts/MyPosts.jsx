@@ -1,8 +1,15 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { Field } from 'redux-form';
+import {
+	maxLengthCreator,
+	required,
+} from '../../../utils/validators/validators';
+import { Textarea } from '../../common/FormsControls/FormsControls';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+
+const maxLength10 = maxLengthCreator(10);
 
 const MyPostInput = props => {
 	return (
@@ -11,8 +18,9 @@ const MyPostInput = props => {
 			<Field
 				placeholder='your news'
 				className={classes.input}
-				component='textarea'
+				component={Textarea}
 				name='postInput'
+				validate={[required, maxLength10]}
 			/>
 
 			<button className={classes.button}>send</button>

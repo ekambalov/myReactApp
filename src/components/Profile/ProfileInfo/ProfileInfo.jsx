@@ -10,11 +10,6 @@ const ProfileInfo = props => {
 	}
 	return (
 		<section className={classes.profile}>
-			{/* <img
-				src='https://cdn.mos.cms.futurecdn.net/yL3oYd7H2FHDDXRXwjmbMf.jpg'
-				alt='album pic'
-				className={classes.album}
-			/> */}
 			<img
 				src={
 					props.profile.photos.large
