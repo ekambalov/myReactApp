@@ -1,41 +1,49 @@
 import React from 'react';
-import classes from './MyPosts.module.css'
+import { reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
+import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
+const MyPostInput = props => {
+	return (
+		<form onSubmit={props.handleSubmit} className={classes.input_wrapper}>
+			<h2 className={classes.title}>My Posts</h2>
+			<Field
+				placeholder='your news'
+				className={classes.input}
+				component='textarea'
+				name='postInput'
+			/>
 
-const MyPosts = (props) => {
-    let posts = props.data
-        .map(data => <Post message={data.message} likes={data.likesCounter} avatar = {props.avatar} />)
-    let newElement = React.createRef()
+			<button className={classes.button}>send</button>
+		</form>
+	);
+};
 
-    const onAddPost = ()=>{
-        props.addPost()
-    }
+const MyPostInputForm = reduxForm({
+	// a unique name for the form
+	form: 'pushPostForm',
+})(MyPostInput);
 
-    const onPostChange = () =>{
-        let text = newElement.current.value;
-        props.updateNewPostChange(text);
-    }
+const MyPosts = props => {
+	let posts = props.data.map(data => (
+		<Post
+			message={data.message}
+			likes={data.likesCounter}
+			avatar={props.avatar}
+		/>
+	));
 
-    
-    return(
-        <div> 
-            <div className={classes.input_wrapper}>
-                <h2 className={classes.title}>My Posts</h2>
-                <textarea ref={newElement} 
-                onChange={onPostChange} 
-                placeholder='your news' 
-                className={classes.input} 
-                value={props.newPostText} />
+	const onAddPost = formData => {
+		props.addPost(formData.postInput);
+	};
 
-                <button onClick={onAddPost} className={classes.button}>send</button>
-            </div>
-            <div className={classes.posts_wrapper}>
-            {posts}
-
-            </div>
-        </div>
-    );
-}
+	return (
+		<div>
+			<MyPostInputForm onSubmit={onAddPost} />
+			<div className={classes.posts_wrapper}>{posts}</div>
+		</div>
+	);
+};
 
 export default MyPosts;

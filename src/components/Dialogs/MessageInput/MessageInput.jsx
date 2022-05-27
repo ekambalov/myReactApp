@@ -1,31 +1,24 @@
 import React from 'react';
-import { sendMessageActionCreator, updateNewMessageActionCreator } from '../../../redux/dialogsReducer';
-import classes from './MessageInput.module.css'
+import { reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
+import classes from './MessageInput.module.css';
 
+const MessageInput = props => {
+	return (
+		<form onSubmit={props.handleSubmit} className={classes.input}>
+			<Field
+				component={'textarea'}
+				name={'newMessage'}
+				placeholder='Write here...'
+			/>
+			<button>Send</button>
+		</form>
+	);
+};
 
+const MessageInputRedux = reduxForm({
+	// a unique name for the form
+	form: 'sendMessageForm',
+})(MessageInput);
 
-
-const MessageInput = (props) => {
-
-    let newMessage = React.createRef();
-
-    const onSendMessage = () =>{
-        let text = newMessage.current.value;
-        props.sendMessage(text);
-    }
-    const onUpdateMessage = () => {
-        let text = newMessage.current.value;
-        props.updateMessage(text);
-    }
-    return(
-        <div className={classes.input}>
-            <textarea ref={newMessage}
-             value = {props.value}
-             onChange={onUpdateMessage}
-             placeholder='Write here...'></textarea>
-            <button onClick={onSendMessage}>Send</button>
-        </div>
-    )
-}
-
-export default MessageInput;
+export default MessageInputRedux;

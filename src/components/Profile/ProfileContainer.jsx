@@ -1,66 +1,82 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
-import {  useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { compose } from 'redux';
-import { UsersAPI } from '../../api/api';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import { getMyId, setMyId, setUserProfile } from '../../redux/profileReducer';
+import {
+	getMyId,
+	getProfile,
+	getStatus,
+	setMyId,
+	setUserProfile,
+	updateStatus,
+} from '../../redux/profileReducer';
 import Profile from './Profile';
 
-
 class ProfileContainer extends React.Component {
+	state = {
+		myId: this.props.myId,
+	};
 
+	componentDidMount() {
+		this.props.getMyId();
+		console.log(this.state.myId);
+		let userId = this.props.router.params.userId;
 
-  componentDidMount() {
+		// if (!userId) userId = this.state.myId;
 
-        this.props.getMyId()
-          
-        
-        
-        let userId = this.props.router.params.userId;
+		this.props.getProfile(userId);
+		this.props.getStatus(userId);
+	}
 
-        if (!userId) userId = this.props.myId;
-        UsersAPI.getProfile(userId).then(data => {
-          this.props.setUserProfile(data);
-        }) 
-  }
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.myId !== this.props.myId) {
+			this.setState({
+				status: this.props.myId,
+			});
+			console.log('true');
+			this.render();
+		}
+	}
 
-  render() { 
-    return <Profile {...this.props} profile={this.props.profile} />
-  }
-} 
-
-
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-      let location = useLocation();
-      let navigate = useNavigate();
-      let params = useParams();
-      return (
-          <Component
-              {...props}
-              router={{ location, navigate, params }}
-          />
-      );
-  }
-  return ComponentWithRouterProp;
+	render() {
+		return (
+			<Profile
+				{...this.props}
+				profile={this.props.profile}
+				status={this.props.status}
+				updateStatus={this.props.updateStatus}
+				myId={this.state.myId}
+			/>
+		);
+	}
 }
 
+function withRouter(Component) {
+	function ComponentWithRouterProp(props) {
+		let location = useLocation();
+		let navigate = useNavigate();
+		let params = useParams();
+		return <Component {...props} router={{ location, navigate, params }} />;
+	}
+	return ComponentWithRouterProp;
+}
 
-
-
-
-
-let mapStateToProps = (state) => ({ 
-
-  profile: state.profilePage.profile,
-  myId: state.profilePage.myId
-
-}) 
-
+let mapStateToProps = state => ({
+	profile: state.profilePage.profile,
+	status: state.profilePage.status,
+	myId: state.profilePage.myId,
+});
 
 export default compose(
-  connect(mapStateToProps,{setUserProfile, setMyId, getMyId}),
-  withRouter,
-  withAuthRedirect
-)(ProfileContainer)
+	connect(mapStateToProps, {
+		setUserProfile,
+		setMyId,
+		getMyId,
+		getProfile,
+		getStatus,
+		updateStatus,
+	}),
+	withRouter,
+	withAuthRedirect,
+)(ProfileContainer);

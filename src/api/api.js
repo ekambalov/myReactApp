@@ -2,7 +2,7 @@ import * as axios from "axios"
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0',
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
         'API-KEY' : 'f384fc6b-9311-417a-b150-47e6f62d372a'
     }
@@ -17,19 +17,40 @@ export const UsersAPI = {
       },
     
     unfollow(userId) {
-        return   instance.delete (`/follow/${userId}`)
+        return   instance.delete (`follow/${userId}`)
                     .then(response => response.data)
     },
     follow(userID){
-        return instance.post (`/follow/${userID}`)
+        return instance.post (`follow/${userID}`)
                     .then(response => response.data)
     },
     getAuth() {
-        return instance.get(`/auth/me`)
+        return instance.get(`auth/me`)
                     .then(responce => responce.data )
     },
     getProfile(userId) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => response.data) 
+        console.warn('Obsolete metod. Please, use ProfileAPI object.')
+        return profileAPI.getProfile(userId);
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`).then(response => response.data) 
+    },
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, {status: status})
+    }
+}
+export const loginAPI = {
+    pushLoginData(email, password, remeberMe = false) {
+        console.log(email)
+        console.log(password)
+        console.log(remeberMe)
+        return instance.post(`auth/login`, {email, password, remeberMe})
     }
 }
 

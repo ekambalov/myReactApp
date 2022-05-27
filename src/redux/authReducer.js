@@ -1,4 +1,4 @@
-import { UsersAPI } from "../api/api";
+import { loginAPI, UsersAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -37,6 +37,12 @@ export const getAuth = () => {
             }
             
                 })
+    }
+}
+
+export const pushLoginData = (data) => {
+    return (dispatch) => {
+        loginAPI.pushLoginData(data.login, data.password, data.remeberMe)
     }
 }
 
