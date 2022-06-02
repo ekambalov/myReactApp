@@ -46,11 +46,11 @@ export const profileAPI = {
     }
 }
 export const loginAPI = {
-    pushLoginData(email, password, remeberMe = false) {
-        console.log(email)
-        console.log(password)
-        console.log(remeberMe)
+    login(email, password, remeberMe = false) {
         return instance.post(`auth/login`, {email, password, remeberMe})
+    },
+    logout() {
+        return instance.delete(`auth/login`)
     }
 }
 

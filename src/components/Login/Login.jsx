@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 import { Field } from 'redux-form';
 import { reduxForm } from 'redux-form';
 import { required } from '../../utils/validators/validators';
@@ -44,8 +45,12 @@ const LoginReduxForm = reduxForm({
 
 const Login = props => {
 	const onSubmit = formData => {
-		props.pushLoginData(formData);
+		props.login(formData);
 	};
+
+	if (props.isAuth) {
+		return <Navigate to='/profile' />;
+	}
 	return (
 		<>
 			<h1>Login</h1>
