@@ -4,6 +4,7 @@ import classes from "./ProfileInfo.module.css";
 import defaluteAvatar from "../../../assets/img/defalut-avatar.webp";
 // import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {

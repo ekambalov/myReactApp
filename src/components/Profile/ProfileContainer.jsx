@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
     this.props.getMyId();
     let userId = this.props.router.params.userId;
 
-    // if (!userId) userId = this.state.myId;
+    if (!userId) userId = this.state.myId;
 
     this.props.getProfile(userId);
     this.props.getStatus(userId);
@@ -32,10 +32,8 @@ class ProfileContainer extends React.Component {
 
   render() {
     if (!this.props.isAuth && !this.props.router.params.userId) {
-      console.log("heh");
       return <Navigate to={"/login"} />;
     }
-    console.log(this.props.isAuth);
     return (
       <Profile
         {...this.props}
